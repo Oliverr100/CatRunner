@@ -7,7 +7,6 @@ public class LevelGenerator : MonoBehaviour
 
     public float chunkWidth = 20f;
 
-    // Where the next floor piece should snap into place
     private float nextSpawnX;
 
     void Start()
