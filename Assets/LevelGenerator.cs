@@ -6,21 +6,33 @@ public class LevelGenerator : MonoBehaviour
     public GameObject levelChunkPrefab;
 
     public float chunkWidth = 20f;
+    public float spawnLookAheadDistance = 30f;
 
     private float nextSpawnX;
 
     void Start()
     {
         nextSpawnX = chunkWidth;
+        ChunkLoader();
+    }
+
+    void ChunkLoader()
+    {
+        Instantiate(levelChunkPrefab, new Vector3(nextSpawnX, 0, 0), Quaternion.identity);
+
+        nextSpawnX += chunkWidth;
     }
 
     void Update()
     {
-        if (player.position.x > nextSpawnX - 15f)
+        if (player == null)
         {
-            Instantiate(levelChunkPrefab, new Vector3(nextSpawnX, 0, 0), Quaternion.identity);
+            return;
+        }
 
-            nextSpawnX += chunkWidth;
+        if (player.position.x > nextSpawnX - spawnLookAheadDistance)
+        {
+            ChunkLoader();
         }
     }
 }
