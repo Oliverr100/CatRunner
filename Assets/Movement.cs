@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
+    private GameManager gameManager;
     [SerializeField]private bool isFacingLeft;
 
     void Start()
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -48,17 +51,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Coin"))
+        if (collision.gameObject.CompareTag("coins"))
         {
+            if (gameManager != null)
+            {
+                gameManager.AddScore();
+            }
             Destroy(collision.gameObject);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        else if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (gameManager != null)
+            {
+                gameManager.RestartGame();
+            }
         }
     }
 }

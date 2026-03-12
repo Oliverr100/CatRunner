@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 59165670}
   - component: {fileID: 59165669}
   - component: {fileID: 59165668}
+  - component: {fileID: 59165673}
   - component: {fileID: 59165667}
   - component: {fileID: 59165672}
   m_Layer: 0
@@ -318,6 +319,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &59165673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59165666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae630dc1218a4f347a55b63eaae04abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 84482131}
 --- !u!1 &84482129
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +689,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
@@ -803,21 +816,6 @@ Transform:
   - {fileID: 454198496}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d4e39cfc50454a859b4f7e2745598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 59165671}
-  left_limit: 0
-  offset: {x: 0, y: 2, z: -10}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,9 +1415,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4442928612931298729, guid: c13b7c3a0ed632e48b4572f50ec05dfc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571398404140869202, guid: c13b7c3a0ed632e48b4572f50ec05dfc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5570048191407741545, guid: c13b7c3a0ed632e48b4572f50ec05dfc, type: 3}
       propertyPath: m_Name
       value: LevelChunk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186639732122019683, guid: c13b7c3a0ed632e48b4572f50ec05dfc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9003568284043402443, guid: c13b7c3a0ed632e48b4572f50ec05dfc, type: 3}
       propertyPath: m_Size.x
