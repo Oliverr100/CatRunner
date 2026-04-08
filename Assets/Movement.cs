@@ -1,17 +1,27 @@
-using System.Security;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f;
-    public float jumpForce = 1f;
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
+    public float jumpForce = 7f;
+
+    [Header("Ground Check")]
+    public bool isGrounded;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask whatIsGround;
+
+    [Header("Audio")]
+    public AudioSource catAudioSource;
+    public AudioClip jumpSound;
 
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
+    [SerializeField] private bool isFacingLeft;
+
     private GameManager gameManager;
-    [SerializeField]private bool isFacingLeft;
 
     void Start()
     {
@@ -19,33 +29,53 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
 
+        // Find the GameManager boss in the scene automatically
         gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
+        if (groundCheck != null)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        }
+
         float moveInput = Input.GetAxisRaw("Horizontal");
-        Debug.Log(moveInput);
-            
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        if(moveInput <= -1)
+        if (moveInput <= -1)
         {
             isFacingLeft = true;
         }
-        else
+        else if (moveInput >= 1)
         {
             isFacingLeft = false;
         }
-
         sr.flipX = isFacingLeft;
 
-        anim.SetFloat("Speed", Mathf.Abs(moveInput));
+        if (anim != null)
+        {
+            anim.SetFloat("Speed", Mathf.Abs(moveInput));
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            anim.SetTrigger("Jump");
+            if (anim != null) anim.SetTrigger("Jump");
+
+            // Play the jump sound
+            if (catAudioSource != null && jumpSound != null)
+            {
+                catAudioSource.PlayOneShot(jumpSound);
+            }
+        }
+
+        if (transform.position.y < -10f)
+        {
+            if (gameManager != null)
+            {
+                gameManager.RestartGame();
+            }
         }
     }
 
@@ -59,7 +89,8 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             if (gameManager != null)
             {
