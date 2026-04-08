@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
 
-        // Find the GameManager boss in the scene automatically
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -63,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             if (anim != null) anim.SetTrigger("Jump");
 
-            // Play the jump sound
             if (catAudioSource != null && jumpSound != null)
             {
                 catAudioSource.PlayOneShot(jumpSound);

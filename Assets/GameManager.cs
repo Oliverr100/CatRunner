@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public TextMeshProUGUI scoreText;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip coinSound;
+
     void Start()
     {
         UpdateScoreDisplay();
@@ -17,6 +21,11 @@ public class GameManager : MonoBehaviour
     {
         score += 1;
         UpdateScoreDisplay();
+
+        if (audioSource != null && coinSound != null)
+        {
+            audioSource.PlayOneShot(coinSound);
+        }
     }
 
     private void UpdateScoreDisplay()
