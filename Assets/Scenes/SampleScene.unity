@@ -213,6 +213,7 @@ MonoBehaviour:
     m_Bits: 8
   catAudioSource: {fileID: 59165674}
   jumpSound: {fileID: 8300000, guid: d142ab75548fe9a43b8c3625b2fa2888, type: 3}
+  deathSound: {fileID: 8300000, guid: e90d550e893386e4a865f93b34d59dfe, type: 3}
   isFacingLeft: 0
 --- !u!50 &59165669
 Rigidbody2D:

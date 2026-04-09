@@ -12,9 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask whatIsGround;
 
+    [Header("Wall Crash Check")]
+    public float wallCheckDistance = 0.2f;
+
     [Header("Audio")]
     public AudioSource catAudioSource;
     public AudioClip jumpSound;
+    public AudioClip deathSound;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -22,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isFacingLeft;
 
     private GameManager gameManager;
+    private bool isDead = false;
 
     void Start()
     {
@@ -34,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         if (groundCheck != null)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -68,17 +75,28 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (Mathf.Abs(moveInput) > 0)
+        {
+            Vector2 lookDirection = isFacingLeft ? Vector2.left : Vector2.right;
+
+            RaycastHit2D wallHit = Physics2D.Raycast(transform.position, lookDirection, wallCheckDistance, whatIsGround);
+
+            if (wallHit.collider != null)
+            {
+                Die();
+            }
+        }
+
         if (transform.position.y < -10f)
         {
-            if (gameManager != null)
-            {
-                gameManager.RestartGame();
-            }
+            Die();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDead) return;
+
         if (collision.gameObject.CompareTag("coins"))
         {
             if (gameManager != null)
@@ -90,10 +108,29 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (gameManager != null)
-            {
-                gameManager.RestartGame();
-            }
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+
+        if (deathSound != null)
+        {
+            GameObject ghostSpeaker = new GameObject("GhostSpeaker");
+            DontDestroyOnLoad(ghostSpeaker);
+
+            AudioSource source = ghostSpeaker.AddComponent<AudioSource>();
+            source.clip = deathSound;
+            source.Play();
+
+            Destroy(ghostSpeaker, deathSound.length);
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.RestartGame();
         }
     }
 }
