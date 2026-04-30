@@ -106,8 +106,15 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Hit a tree!");
+            Die();
+        }
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("Hit an active Enemy! Ouch!");
             Die();
         }
     }
