@@ -1,12 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Score Settings")]
-    private int score = 0;
+    public int score = 0;
     public TextMeshProUGUI scoreText;
+
+    [Header("Difficulty Settings")]
+    public float difficultyMultiplier = 1f;
 
     [Header("Audio Settings")]
     public AudioSource audioSource;
@@ -14,21 +17,27 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateScoreDisplay();
+        UpdateScoreUI();
     }
 
     public void AddScore()
     {
-        score += 1;
-        UpdateScoreDisplay();
+        score++;
+        UpdateScoreUI();
 
         if (audioSource != null && coinSound != null)
         {
             audioSource.PlayOneShot(coinSound);
         }
+
+        if (score % 5 == 0)
+        {
+            difficultyMultiplier += 0.2f;
+            Debug.Log("SPEED UP! New Multiplier: " + difficultyMultiplier);
+        }
     }
 
-    private void UpdateScoreDisplay()
+    private void UpdateScoreUI()
     {
         if (scoreText != null)
         {
@@ -38,6 +47,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

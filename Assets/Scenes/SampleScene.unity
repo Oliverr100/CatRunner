@@ -344,8 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae630dc1218a4f347a55b63eaae04abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   scoreText: {fileID: 84482131}
-  audioSource: {fileID: 59165675}
+  difficultyMultiplier: 1
+  audioSource: {fileID: 59165674}
   coinSound: {fileID: 8300000, guid: 6bdb1da6f65e4664fb104d9447968c26, type: 3}
 --- !u!82 &59165674
 AudioSource:

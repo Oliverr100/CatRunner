@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SimpleEnemyBrain : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float baseMoveSpeed = 3f;
@@ -12,29 +12,38 @@ public class SimpleEnemyBrain : MonoBehaviour
     public LayerMask whatIsGround;
 
     private Rigidbody2D rb;
+    private GameManager gameManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        float speedToUse = moveLeft ? -baseMoveSpeed : baseMoveSpeed;
+        float currentSpeed = baseMoveSpeed;
+
+        if (gameManager != null)
+        {
+            currentSpeed = baseMoveSpeed * gameManager.difficultyMultiplier;
+        }
+
+        float speedToUse = moveLeft ? -currentSpeed : currentSpeed;
         rb.velocity = new Vector2(speedToUse, rb.velocity.y);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(edgeCheck.position, Vector2.down, rayDistance, whatIsGround);
 
         if (groundInfo.collider == false)
         {
-            Flip(); // Turn around!
+            Flip();
         }
     }
 
     private void Flip()
     {
         moveLeft = !moveLeft;
-
         transform.Rotate(0f, 180f, 0f);
     }
 
