@@ -49,9 +49,9 @@ public class GameManager : MonoBehaviour
             audioSource.PlayOneShot(coinSound);
         }
 
-        if (score % 5 == 0)
+        if (score % 3 == 0)
         {
-            difficultyMultiplier += 0.2f;
+            difficultyMultiplier += 0.8f;
         }
     }
 

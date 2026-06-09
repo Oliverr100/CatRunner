@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -12,12 +13,14 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("LevelGenerator started. Initializing first chunk.");
         nextSpawnX = chunkWidth;
         ChunkLoader();
     }
 
     void ChunkLoader()
     {
+        Debug.Log($"Spawning chunk at X = {nextSpawnX}");
         Instantiate(levelChunkPrefab, new Vector3(nextSpawnX, 0, 0), Quaternion.identity);
 
         nextSpawnX += chunkWidth;
@@ -30,8 +33,16 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
+        Debug.Log
+            (
+       $"Player X: {player.position.x}, " +
+       $"Next Spawn X: {nextSpawnX}, " +
+       $"Trigger At: {nextSpawnX - spawnLookAheadDistance}");
+
+
         if (player.position.x > nextSpawnX - spawnLookAheadDistance)
         {
+            Debug.Log("Player is approaching the end of the current chunk. Spawning next chunk.");
             ChunkLoader();
         }
     }
