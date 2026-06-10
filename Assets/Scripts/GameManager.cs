@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Jobs;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,12 +24,17 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
     private bool isGameOver = false;
 
+    [Header("Game over buttons")]
+    public Button restartButton;
+    public Button exitButton;
+
     void Start()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
 
         UpdateScoreUI();
         Time.timeScale = 1f;
+
     }
 
     public void AddScore()
@@ -95,4 +101,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
+    
 }
