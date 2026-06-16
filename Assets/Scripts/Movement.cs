@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (gameManager != null)
         {
-            gameManager.MainMenu();
+            gameManager.TriggerGameOver();
         }
     }
 }
