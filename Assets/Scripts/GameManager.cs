@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+        gameOverPanel.SetActive(false);
 
         UpdateScoreUI();
         Time.timeScale = 1f;
@@ -89,6 +90,11 @@ public class GameManager : MonoBehaviour
         {
             finalScoreText.text = "FINAL SCORE: " + score.ToString();
         }
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartGame()
