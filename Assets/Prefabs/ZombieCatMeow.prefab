@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6060396144379772016}
   - component: {fileID: 7677424213594151099}
   - component: {fileID: 5705335493395612702}
+  - component: {fileID: 3377321201709752551}
+  - component: {fileID: 3729124550579998746}
   m_Layer: 0
   m_Name: ZombieCatMeow
   m_TagString: Enemy
@@ -225,6 +227,51 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &3377321201709752551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617426816088832571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &3729124550579998746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617426816088832571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2917ae7c90fde44ab27335c80cf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  alertRange: 6
+  alertSound: 1
+  alertColor: {r: 1, g: 0.3, b: 0.25, a: 1}
 --- !u!1 &6496325792244209122
 GameObject:
   m_ObjectHideFlags: 0

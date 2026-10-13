@@ -696,6 +696,8 @@ GameObject:
   - component: {fileID: 6430236804400201073}
   - component: {fileID: 7245001746784653586}
   - component: {fileID: 8186639732122019683}
+  - component: {fileID: 8899645761294373047}
+  - component: {fileID: 6797917544563900750}
   m_Layer: 0
   m_Name: Tree 1
   m_TagString: Enemy
@@ -815,6 +817,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!114 &8899645761294373047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724412609214915965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &6797917544563900750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724412609214915965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
 --- !u!1 &775377843441681976
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +875,8 @@ GameObject:
   - component: {fileID: 984442214012392983}
   - component: {fileID: 2488346103702442412}
   - component: {fileID: 3675431368489325058}
+  - component: {fileID: 5869212597817933387}
+  - component: {fileID: 1194939879267511855}
   m_Layer: 0
   m_Name: ZombieCatMeow
   m_TagString: Enemy
@@ -1040,6 +1088,51 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &5869212597817933387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775377843441681976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &1194939879267511855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775377843441681976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2917ae7c90fde44ab27335c80cf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  alertRange: 6
+  alertSound: 1
+  alertColor: {r: 1, g: 0.3, b: 0.25, a: 1}
 --- !u!1 &2457214634183956242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1144,8 @@ GameObject:
   - component: {fileID: 9095807337703319310}
   - component: {fileID: 1259560247510997989}
   - component: {fileID: 4442928612931298729}
+  - component: {fileID: 2085338515826700757}
+  - component: {fileID: 438169423553133497}
   m_Layer: 0
   m_Name: Tree 2
   m_TagString: Enemy
@@ -1170,6 +1265,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!114 &2085338515826700757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457214634183956242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &438169423553133497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457214634183956242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
 --- !u!1 &3857992567906003085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1320,8 @@ GameObject:
   - component: {fileID: 7866507118573043936}
   - component: {fileID: 6952371055169233755}
   - component: {fileID: 5703934528658800569}
+  - component: {fileID: 3153784807013363997}
+  - component: {fileID: 3687316802678588}
   m_Layer: 0
   m_Name: Coins 1
   m_TagString: coins
@@ -1290,6 +1431,50 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3153784807013363997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857992567906003085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &3687316802678588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857992567906003085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  rustleDistance: 1.6
+  rustleSound: 1
 --- !u!1 &5570048191407741545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1570,8 @@ GameObject:
   - component: {fileID: 7784759968738387676}
   - component: {fileID: 1299536559067464886}
   - component: {fileID: 6582917034523723355}
+  - component: {fileID: 5767556716844363651}
+  - component: {fileID: 6432303480668565172}
   m_Layer: 0
   m_Name: Coins 2
   m_TagString: coins
@@ -1494,6 +1681,50 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5767556716844363651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311629400181658545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &6432303480668565172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311629400181658545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  rustleDistance: 1.6
+  rustleSound: 1
 --- !u!1 &8131961889367845848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1736,8 @@ GameObject:
   - component: {fileID: 3820089482579939220}
   - component: {fileID: 3413198760012002856}
   - component: {fileID: 4571398404140869202}
+  - component: {fileID: 8275444149099912140}
+  - component: {fileID: 7070160678919102948}
   m_Layer: 0
   m_Name: Tree 3
   m_TagString: Enemy
@@ -1624,6 +1857,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!114 &8275444149099912140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131961889367845848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &7070160678919102948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131961889367845848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
 --- !u!1 &8322914914039056940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,6 +1914,8 @@ GameObject:
   - component: {fileID: 2977070633118210024}
   - component: {fileID: 9055888942249852494}
   - component: {fileID: 5476386067905493080}
+  - component: {fileID: 1664552991091366519}
+  - component: {fileID: 4027204585202499325}
   m_Layer: 0
   m_Name: Enemy bird
   m_TagString: Enemy
@@ -1787,6 +2066,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 4
   moveLeft: 1
+--- !u!114 &1664552991091366519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322914914039056940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
+--- !u!114 &4027204585202499325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322914914039056940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2917ae7c90fde44ab27335c80cf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  alertRange: 6
+  alertSound: 1
+  alertColor: {r: 1, g: 0.3, b: 0.25, a: 1}
 --- !u!1001 &4122885517442878716
 PrefabInstance:
   m_ObjectHideFlags: 0

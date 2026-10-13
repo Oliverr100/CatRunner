@@ -139,6 +139,8 @@ GameObject:
   - component: {fileID: 59165672}
   - component: {fileID: 59165674}
   - component: {fileID: 59165675}
+  - component: {fileID: 59165677}
+  - component: {fileID: 59165676}
   m_Layer: 0
   m_Name: CatMeow
   m_TagString: Untagged
@@ -212,6 +214,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   wallCheckDistance: 0.2
+  fallDeathY: -3.5
+  deathHop: {x: 2.5, y: 6.5}
   catAudioSource: {fileID: 59165674}
   jumpSound: {fileID: 8300000, guid: d142ab75548fe9a43b8c3625b2fa2888, type: 3}
   deathSound: {fileID: 8300000, guid: e90d550e893386e4a865f93b34d59dfe, type: 3}
@@ -350,10 +354,16 @@ MonoBehaviour:
   scoreText: {fileID: 84482131}
   highScoreText: {fileID: 1072965051}
   difficultyMultiplier: 1
+  difficultyStep: 0.25
+  maxDifficulty: 2.2
   audioSource: {fileID: 59165674}
   coinSound: {fileID: 8300000, guid: 6bdb1da6f65e4664fb104d9447968c26, type: 3}
   gameOverPanel: {fileID: 1067610468}
   finalScoreText: {fileID: 0}
+  gameOverTitle: {fileID: 682679450}
+  hitStopDuration: 0.09
+  slowMotionScale: 0.4
+  slowMotionDuration: 0.9
   restartButton: {fileID: 0}
   exitButton: {fileID: 0}
 --- !u!82 &59165674
@@ -548,6 +558,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &59165676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59165666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49186dd6a77b2034d83c9b675eaebfb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPunch: {x: -0.22, y: 0.34}
+  landPunch: {x: 0.34, y: -0.36}
+  stepInterval: 0.27
+  footstepSound: 1
+  footstepVolume: 0.14
+  stepPunch: {x: 0.05, y: -0.06}
+  runLean: 5
+  airTilt: 2.2
+  deathSpin: 540
+  screenFlashOnHit: 1
+--- !u!114 &59165677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59165666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!1 &72110446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,6 +1251,10 @@ MonoBehaviour:
   RestartButton: {fileID: 481616837}
   ExitButton: {fileID: 104744169}
   gameManager: {fileID: 59165673}
+  hoverScale: 1.08
+  pressScale: 0.94
+  hoverBrighten: 0.2
+  feelSpeed: 16
 --- !u!4 &162427461
 Transform:
   m_ObjectHideFlags: 0
@@ -3114,6 +3179,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7599235840010813280, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
   m_PrefabInstance: {fileID: 1218927437}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1067610475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067610468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da43537ed79a0b248ba18eb611f0acec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.45
+  startScale: 0.6
+  playSound: 1
 --- !u!1 &1072965049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,7 +3721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599235840010813280, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7599235840010813280, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3711,7 +3791,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7599235840010813280, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1558035103}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7599235840010813287, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1067610475}
   m_SourcePrefab: {fileID: 100100000, guid: 46640eb424e726547b5f2426e3180e95, type: 3}
 --- !u!1 &1545683791
 GameObject:
@@ -4141,6 +4224,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9117b6d975111c47b064a4373cc67ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1569892965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1569892967}
+  - component: {fileID: 1569892966}
+  m_Layer: 0
+  m_Name: GameFeel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1569892966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569892965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c299ae73a40374f9136735d58176eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 1790149266}
+  player: {fileID: 59165671}
+  music: {fileID: 708162456}
+  dustPrefab: {fileID: 4884125131017656602, guid: e50fdb6e0126c9642a404ccc3ecdd4ae, type: 3}
+  coinPrefab: {fileID: 5592315532902463579, guid: b367d5124dbd4214c97cb0ad15673405, type: 3}
+  hitPrefab: {fileID: 7333391077936829102, guid: d0d95129c8cc23b4d977c0d212a5232a, type: 3}
+  leafPrefab: {fileID: 1819751109511707873, guid: 77415eda4dac3684a91bd4c1efc5a76d, type: 3}
+  softShakeStrength: 0.12
+  hardShakeStrength: 0.35
+  hardShakeDuration: 0.3
+  dustColor: {r: 0.93, g: 0.88, b: 0.75, a: 0.9}
+  coinColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  hitColor: {r: 1, g: 0.95, b: 0.8, a: 1}
+  leafColorA: {r: 0.42, g: 0.74, b: 0.28, a: 1}
+  leafColorB: {r: 0.72, g: 0.85, b: 0.3, a: 1}
+--- !u!4 &1569892967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569892965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1577380900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4970,6 +5112,7 @@ MonoBehaviour:
   levelChunkPrefab: {fileID: 6063425728073428172, guid: e60396ac58a03354d91d92d8e2cb483c, type: 3}
   chunkWidth: 45
   spawnLookAheadDistance: 40
+  despawnDistance: 120
 --- !u!4 &2042539774
 Transform:
   m_ObjectHideFlags: 0
@@ -5337,6 +5480,8 @@ GameObject:
   - component: {fileID: 3389719853054247077}
   - component: {fileID: 5839849648372572879}
   - component: {fileID: 1754303681224892450}
+  - component: {fileID: 5839849648372572881}
+  - component: {fileID: 5839849648372572880}
   m_Layer: 0
   m_Name: Coins 2
   m_TagString: coins
@@ -5439,6 +5584,8 @@ GameObject:
   - component: {fileID: 7661498429498225041}
   - component: {fileID: 4516911201225463863}
   - component: {fileID: 1081912638793965089}
+  - component: {fileID: 7661498429498225043}
+  - component: {fileID: 7661498429498225042}
   m_Layer: 0
   m_Name: Enemy bird
   m_TagString: Enemy
@@ -5502,6 +5649,8 @@ GameObject:
   - component: {fileID: 8502830078463601133}
   - component: {fileID: 7808590830920781905}
   - component: {fileID: 8967633800501444651}
+  - component: {fileID: 8967633800501444653}
+  - component: {fileID: 8967633800501444652}
   m_Layer: 3
   m_Name: Tree 3
   m_TagString: Enemy
@@ -6047,7 +6196,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -28, y: -2, z: 0}
-  m_Size: {x: 48, y: 2, z: 1}
+  m_Size: {x: 48, y: 1, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -6142,6 +6291,8 @@ GameObject:
   - component: {fileID: 1891366171171412744}
   - component: {fileID: 2848768102770505579}
   - component: {fileID: 3647766968654430490}
+  - component: {fileID: 5264163307046552326}
+  - component: {fileID: 5264163307046552325}
   m_Layer: 3
   m_Name: Tree 1
   m_TagString: Enemy
@@ -6149,6 +6300,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5264163307046552325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264163307046552324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
+--- !u!114 &5264163307046552326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264163307046552324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!1 &5314533190021062721
 GameObject:
   m_ObjectHideFlags: 0
@@ -6163,6 +6358,8 @@ GameObject:
   - component: {fileID: 5668555524362072174}
   - component: {fileID: 7028940710998915029}
   - component: {fileID: 8071137272756712571}
+  - component: {fileID: 8316113082584945156}
+  - component: {fileID: 8316113082584945155}
   m_Layer: 0
   m_Name: ZombieCatMeow
   m_TagString: Enemy
@@ -6337,6 +6534,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5839849648372572880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772970517296526792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  rustleDistance: 1.6
+  rustleSound: 1
+--- !u!114 &5839849648372572881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772970517296526792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!212 &5942898359146577308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6450,6 +6691,8 @@ GameObject:
   - component: {fileID: 4411695135386288503}
   - component: {fileID: 5942898359146577308}
   - component: {fileID: 9127606522632078288}
+  - component: {fileID: 9127606522632078290}
+  - component: {fileID: 9127606522632078289}
   m_Layer: 3
   m_Name: Tree 2
   m_TagString: Enemy
@@ -6529,6 +6772,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7661498429498225042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495741955368758357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2917ae7c90fde44ab27335c80cf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  alertRange: 6
+  alertSound: 1
+  alertColor: {r: 1, g: 0.3, b: 0.25, a: 1}
+--- !u!114 &7661498429498225043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495741955368758357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!212 &7808590830920781905
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6704,6 +6992,51 @@ Transform:
   - {fileID: 1993143718878063943}
   m_Father: {fileID: 6073360230769903784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8316113082584945155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314533190021062721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2917ae7c90fde44ab27335c80cf1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  alertRange: 6
+  alertSound: 1
+  alertColor: {r: 1, g: 0.3, b: 0.25, a: 1}
+--- !u!114 &8316113082584945156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314533190021062721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!212 &8451413100890379946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6782,6 +7115,8 @@ GameObject:
   - component: {fileID: 3326123033425782425}
   - component: {fileID: 2555926304925386018}
   - component: {fileID: 877010016702077376}
+  - component: {fileID: 8541611063661301494}
+  - component: {fileID: 8541611063661301493}
   m_Layer: 0
   m_Name: Coins 1
   m_TagString: coins
@@ -6789,6 +7124,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8541611063661301493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541611063661301492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  rustleDistance: 1.6
+  rustleSound: 1
+--- !u!114 &8541611063661301494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541611063661301492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!61 &8967633800501444651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6834,6 +7213,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!114 &8967633800501444652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736080647291047329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
+--- !u!114 &8967633800501444653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736080647291047329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!61 &9127606522632078288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6879,6 +7302,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!114 &9127606522632078289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6997035253946347883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276b9876203620e4ba963697972f81ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+  rustleDistance: 1.6
+  rustleSound: 1
+--- !u!114 &9127606522632078290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6997035253946347883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313a06c3b0928a408f7ff301c74d713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stiffness: 240
+  damping: 15
+  smoothTurn: 1
+  turnDuration: 0.16
+  pivotAtCenter: 0
+  pulseAmount: 0
+  pulseSpeed: 3
+  bobHeight: 0
+  bobSpeed: 3
+  bobHops: 0
+  swayAngle: 0
+  swaySpeed: 2
+  spinSpeedY: 0
+  spinSpeedZ: 0
+  tiltSharpness: 14
+  angleStiffness: 140
+  angleDamping: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6895,3 +7362,4 @@ SceneRoots:
   - {fileID: 884583979}
   - {fileID: 162427461}
   - {fileID: 708162457}
+  - {fileID: 1569892967}
